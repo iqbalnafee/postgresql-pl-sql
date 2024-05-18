@@ -2,14 +2,24 @@ do
 $$
 
     declare
-        counter int := 0;
+        row_var int := 0;
+        col_var int := 0;
     begin
 
-        <<my_loop>>
+        <<outer_loop>>
         loop
-            counter = counter + 1;
-            raise notice '%', counter;
-            exit my_loop when counter = 5;
+            row_var = row_var + 1;
+
+            <<inner_loop>>
+            loop
+                col_var = col_var + 1;
+                raise notice '(%, %)', row_var,col_var;
+                exit inner_loop when col_var = 3;
+            end loop;
+            col_var := 0;
+
+
+            exit outer_loop when row_var = 3;
         end loop;
 
     end;
