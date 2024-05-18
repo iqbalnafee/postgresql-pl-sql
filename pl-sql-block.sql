@@ -1,15 +1,19 @@
-do
+create or replace function get_email_count(email_address varchar(50))
+returns int
+language plpgsql
+as
 $$
 
     declare
-        counter int := 0;
+        email_count integer;
     begin
+       select count(*)
+       into email_count
+       from email.emails
+       where message_from = email_address;
 
-       while counter < 5 loop
-           raise notice 'Counter %', counter;
-		   counter := counter + 1;
-       end loop;
-
+       return email_count;
     end;
+
 
 $$;
