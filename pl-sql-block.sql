@@ -3,13 +3,13 @@ $$
 
     declare
 
-        selected_row email.person%rowtype;
+        rec record;
 
     begin
 
-        select * into selected_row from email.person where id = 'allen-p';
+        select * into rec from email.person where id = 'allen-p';
 
-        raise notice 'first name is %, last name is %',selected_row.firstname,selected_row.lastname;
+        raise notice 'first name is %, email address is %',rec.firstname,rec.email_address;
 
     end;
 $$
