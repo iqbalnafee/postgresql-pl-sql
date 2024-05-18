@@ -3,14 +3,13 @@ $$
 
     declare
 
-        v_first_name email.person.firstname%type := '';
-        v_last_name  email.person.lastname%type  := '';
+        selected_row email.person%rowtype;
 
     begin
 
-        select firstname, lastname into v_first_name,v_last_name from email.person where id = 'allen-p';
+        select * into selected_row from email.person where id = 'allen-p';
 
-        raise notice 'first name is %, last name is %',v_first_name,v_last_name;
+        raise notice 'first name is %, last name is %',selected_row.firstname,selected_row.lastname;
 
     end;
 $$
